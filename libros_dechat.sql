@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-07-2025 a las 03:59:23
+-- Tiempo de generación: 16-07-2025 a las 05:38:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -26,7 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `libros_dechat`
 --
--- Creación: 14-07-2025 a las 02:11:43
+-- Creación: 16-07-2025 a las 03:18:17
+-- Última actualización: 16-07-2025 a las 00:07:09
 --
 
 CREATE TABLE `libros_dechat` (
@@ -34,9 +35,16 @@ CREATE TABLE `libros_dechat` (
   `nombre` varchar(30) NOT NULL,
   `autor` varchar(30) NOT NULL,
   `categoria` varchar(30) NOT NULL,
-  `año-publicación` date NOT NULL,
+  `fecha-publicación` date NOT NULL,
   `ISBN` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `libros_dechat`
+--
+
+INSERT INTO `libros_dechat` (`id`, `nombre`, `autor`, `categoria`, `fecha-publicación`, `ISBN`) VALUES
+(2, 'Number theory', 'Dechat', 'Text', '2035-07-18', 'ABS123');
 
 --
 -- Índices para tablas volcadas
@@ -56,7 +64,7 @@ ALTER TABLE `libros_dechat`
 -- AUTO_INCREMENT de la tabla `libros_dechat`
 --
 ALTER TABLE `libros_dechat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

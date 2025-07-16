@@ -3,18 +3,18 @@ import { pool } from './database.js';
 class LibrosController {
 async getAll(req, res) {
     try {
-      const [rows] = await pool.query('SELECT * FROM libros_dechat');
-    res.json(rows);
-    } catch (error) {
-    res.status(500).json({ error: 'Error al obtener los libros', details: error.message });
+            const [rows] = await pool.query('SELECT * FROM libros_dechat');
+             res.json(rows);
+        } catch (error) {
+        res.status(500).json({ error: 'Error al obtener los libros', details: error.message });
     }
 }
 
 async getOne(req, res) {
     try {
-    const { id } = req.params;
-      const [rows] = await pool.query('SELECT * FROM libros_dechat WHERE id = ?', [id]);
-    if (rows.length === 0) {
+        const { id } = req.params;
+         const [rows] = await pool.query('SELECT * FROM libros_dechat WHERE id = ?', [id]);
+        if (rows.length === 0) {
         return res.status(404).json({ error: 'Libro no encontrado' });
     }
     res.json(rows[0]);
@@ -25,15 +25,15 @@ async getOne(req, res) {
 
 async create(req, res) {
     try {
-    const { nombre, autor, categoria, 'año-publicacion': año-publicacion, ISBN } = req.body;
+    const { nombre, autor, categoria, 'fecha-publicacion': fechapub, ISBN } = req.body;
 
-    if (!nombre || !autor || !categoria || !año-publicacion || !ISBN) {
+    if (!nombre || !autor || !categoria || !fechapub || !ISBN) {
         return res.status(400).json({ error: 'Faltan campos requeridos (nombre, autor, categoria, año-publicacion, ISBN)' });
     }
 
     const [result] = await pool.query(
-        'INSERT INTO libros (nombre, autor, categoria, `año-publicacion`, ISBN) VALUES (?, ?, ?, ?, ?)',
-        [nombre, autor, categoria, año-publicacion, ISBN]
+        'INSERT INTO libros (nombre, autor, categoria, `fecha-publicacion`, ISBN) VALUES (?, ?, ?, ?, ?)',
+        [nombre, autor, categoria, fechapub, ISBN]
     );
 
     res.status(201).json({ id: result.insertId, nombre, autor, categoria, 'Publicado en año: ': año-publicacion, ISBN });
@@ -45,7 +45,7 @@ async create(req, res) {
 async update(req, res) {
     try {
     const { id } = req.params;
-    const { nombre, autor, categoria, 'año-publicacion': año-publicacion, ISBN } = req.body;
+    const { nombre, autor, categoria, 'fecha-publicacion': fechapub, ISBN } = req.body;
 
       const [existing] = await pool.query('SELECT * FROM libros WHERE id = ?', [id]);
     if (existing.length === 0) {
@@ -53,8 +53,8 @@ async update(req, res) {
     }
 
     await pool.query(
-        'UPDATE libros SET nombre = ?, autor = ?, categoria = ?, `año-publicacion` = ?, ISBN = ? WHERE id = ?',
-        [nombre, autor, categoria, año-publicacion, ISBN, id]
+        'UPDATE libros SET nombre = ?, autor = ?, categoria = ?, `fechapub` = ?, ISBN = ? WHERE id = ?',
+        [nombre, autor, categoria, fechapub, ISBN, id]
     );
 
     res.json({ message: 'Libro actualizado correctamente' });
