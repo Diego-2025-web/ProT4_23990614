@@ -89,4 +89,4 @@ async delete(req, res) {
 }
 
 
-export const libros = new LibrosController();
+export const libros_dechat = new LibrosController();

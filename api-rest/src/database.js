@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import mysqlConnection from 'mysql2/promise';
 
 const properties = {
 	host: 'localhost',
@@ -7,15 +7,16 @@ const properties = {
 	database: 'api-rest'
 	};
 //import mysqlConnection
-export const pool = mysql.createPool(properties);
+//public MySqlConnection()
+export const pool = mysqlConnection.createPool(properties);
 
 const testConnection = async () => {
 	try {
 		const connection = await pool.getConnection();
-		console.log('✅ Conectado a la base de datos');
+		console.log('Conectado a la base de atos');
 		connection.release();
 	} catch (err) {
-		console.error('❌ Error al conectar a la base de datos:', err.message);
+		console.error('Error al conectar a la base de gatos:', err.message);
 	}
 };
 
