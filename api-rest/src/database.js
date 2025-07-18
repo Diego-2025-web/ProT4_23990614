@@ -13,10 +13,10 @@ export const pool = mysqlConnection.createPool(properties);
 const testConnection = async () => {
 	try {
 		const connection = await pool.getConnection();
-		console.log('Conectado a la base de atos');
+		console.log('Conectado a la base de gatos');
 		connection.release();
 	} catch (err) {
-		console.error('Error al conectar a la base de gatos:', err.message);
+		console.error('Error al conectar a la base de datos:', err.message);
 	}
 };
 
